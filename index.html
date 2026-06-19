@@ -1613,7 +1613,10 @@ assessmentEditModal.classList.remove('hidden');
                 }
 
                 currentAssessmentDisplay.textContent = assessment.fullName;
-                if (assessment.components) {
+                if (
+    assessment.components &&
+    Object.keys(assessment.components).length > 0
+) {
 markEntryHead.innerHTML = `<tr><th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Bil.</th><th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Nama Pelajar</th><th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">No. Matrik</th>${Object.values(assessment.components)
       .map(c => `<th class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">${c.label} (/ ${c.max})</th>`)
       .join('')}
@@ -1637,8 +1640,10 @@ markEntryHead.innerHTML = `
                     const iaData = studentScores[assessment.name] || {};
                     const row = document.createElement('tr');
                     
-if (assessment.components) {
-
+if (
+    assessment.components &&
+    Object.keys(assessment.components).length > 0
+) {
   const componentInputs = Object.entries(assessment.components)
     .map(([key, comp]) => `
       <td class="px-6 py-4">
